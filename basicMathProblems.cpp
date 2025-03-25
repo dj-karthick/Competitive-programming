@@ -11,7 +11,21 @@
 
 using namespace std;
 
-int main() {
-    cout << "Hey buddy how are you";
-    return 0;
+int noOfDigit(int n) {
+    int count = 0;
+    while(n>0){
+        int lastDigit = n % 10;
+        cout << lastDigit << endl;
+        count = count + 1;
+        n = n/10;
+    }
+    return count;
 } 
+
+int main (){
+    int n;
+    cin >> n;
+    int cnt = noOfDigit(n);
+    cout << endl << cnt << endl;
+    return 0;
+}
