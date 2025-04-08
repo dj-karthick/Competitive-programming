@@ -45,11 +45,69 @@ int printNTimesUsingBacktrackingInReverse(int i, int n){   // We use cout after 
     cout << i << endl;
 }
 
+int sumOfNNumbersUsingParameterizedWay(int i, int sum){    // This way we adding i to the parameter every time to calculate sum. 
+    if(i<1){                                               // You have to understand when to use parameterized and functional methods ie: means to return something.
+        cout << sum << endl;
+        return 0;
+    }
+    sumOfNNumbersUsingParameterizedWay(i-1, sum+i);
+}
+
+int sumOfNNumbersUsingFuctionalWay(int n){
+    if(n == 0) return 0;                                   //Tc = O(N)
+    return n + sumOfNNumbersUsingFuctionalWay(n-1);      // Sc = O(N) 
+}
+
+int factorialOfNNumbers(int n){
+    if(n == 1) return 1;
+    return n * factorialOfNNumbers(n-1);
+}
+
+int arr[6] = {1,2,4,3,5, 6};
+int reverseAnArrayUsingTwoPointer(int l, int r){
+    if(l == r) return 0;
+    swap(arr[l], arr[r]);
+    reverseAnArrayUsingTwoPointer(l+1, r-1);
+}
+
+int reverseAnArrayUsingOnePointer(int i, int array[], int n){     
+    if(i == n/2) return 0;
+    swap(array[i], array[n-i-1]);
+    reverseAnArrayUsingOnePointer(i+1, array, n);
+}
+
+int checkForPalindrome(int i, string &str, int n){
+    if(i==n/2) return true;
+    if(str[i] != str[n-i-1]) return false;      // Tc = O(N/2)
+    return checkForPalindrome(i+1, str, n);
+}
+
+int fibonaciNumberUsingMultipleRecursionCall(int n){
+    if(n <= 1) return n;
+    int last = fibonaciNumberUsingMultipleRecursionCall(n-1);  // Tc = O(2^n) - For every recursion call it calls 2 recursion call so 2^n.
+    int sLast = fibonaciNumberUsingMultipleRecursionCall(n-2);
+    return last + sLast;
+}
+
+
+
+
 int main() {
 
     int n;
     cin >> n;
-    printNTimesUsingBacktrackingInReverse(1, n);
+    cout << fibonaciNumberUsingMultipleRecursionCall(n);
+    //int array[n];
+    // string str; 
+    // getline(cin, str);
+    // int n = str.length();
+    // if(checkForPalindrome(0, str, n)) {
+    //     cout << str<< " : It is palindrome."; 
+    // }
+    // else {
+    //     cout << str << " : It is not a palindrome.";
+    // }
+    
     
     return 0;
 }
